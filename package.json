@@ -1,0 +1,19 @@
+{
+  "name": "cc_package",
+  "version": "0.0.1",
+  "description": "Generates random test credit card numbers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ay-slim/ccPackage.git"
+  },
+  "author": "Ayooluwa Adedipe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ay-slim/ccPackage/issues"
+  },
+  "homepage": "https://github.com/Ay-slim/ccPackage#readme"
+}
