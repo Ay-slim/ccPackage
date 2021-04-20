@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Ay-slim/ccPackage/issues"
   },
-  "homepage": "https://github.com/Ay-slim/ccPackage#readme"
+  "homepage": "https://github.com/Ay-slim/ccPackage#readme",
+  "dependencies": {
+    "joi": "^17.4.0"
+  }
 }
