@@ -14,8 +14,13 @@ const {
     joinCC
 } = require('./helpers')
 
-function fullCCNumber(options) {
+const optionsSchema = require('./validator')
 
+function fullCCNumber(options) {
+    const validation = optionsSchema.validate(options)
+    if(validation.error) {
+        throw new Error(validation.error)
+    }
     const bank_code = options.bank_code || null
     const starts_with = options.starts_with || null
     const ends_with = options.ends_with || null
@@ -107,7 +112,7 @@ function fullCCNumber(options) {
     }
 }
 
-const testResult = fullCCNumber({ ends_with: '85454543', bank_code: '011' })
+const testResult = fullCCNumber({ ends_with: '85454543', issuer: 'Visa' })
 console.log(testResult, testResult.length)
 
 module.exports = fullCCNumber

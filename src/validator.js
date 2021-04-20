@@ -1,6 +1,6 @@
 const joi = require ('joi')
 
-const optionSchema = joi.object({
+const optionsSchema = joi.object({
     bank_code: joi.string(),
     starts_with: joi.string(),
     ends_with: joi.string(),
