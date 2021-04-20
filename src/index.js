@@ -3,6 +3,11 @@
 const bank_bins = require('./bank_codes.json')
 
 const {
+    VERVE_LENGTH,
+    MASTER_VISA_LENGTH
+} = require('./constants')
+
+const {
     calculateLuhn,
     generateRandomNumbers,
     iterateForEndsWith,
@@ -29,84 +34,80 @@ function fullCCNumber(options) {
 
     if(bank_code && bank_bins.hasOwnProperty(bank_code) && !userDefinedNumbersPassed && !issuer){
         const bankBin = String(bank_bins[bank_code].bin)
-        const midLength = 15 - bankBin.length
+        const midLength = MASTER_VISA_LENGTH - bankBin.length - 1
         return joinCC(bankBin, midLength)
     }
 
-    if(issuer && issuer === 'Verve' && !userDefinedNumbersPassed && !bank_code) {
-        return joinCC('5', 17)
-    }
-
-    if(issuer && issuer === 'MasterCard' && !userDefinedNumbersPassed && !bank_code) {
-        return joinCC('5', 14)
-    }
-
-    if(issuer && issuer === 'Visa' && !userDefinedNumbersPassed && !bank_code) {
-        return joinCC('4', 14)
+    if(issuer && !userDefinedNumbersPassed && !bank_code) {
+        const leadingDigit = issuer === 'Visa' ? '4' : '5'
+        const cardLength = issuer === 'Verve' ? VERVE_LENGTH - 2 : MASTER_VISA_LENGTH - 2
+        return joinCC(leadingDigit, cardLength)
     }
 
     if(starts_with && (!issuer || (issuer && (issuer === 'Visa' || issuer === 'MasterCard'))) && !bank_code) {
-        const midLength = 15 - starts_with.length
+        const midLength = MASTER_VISA_LENGTH - starts_with.length - 1
         return joinCC(starts_with, midLength)
     }
 
     if(starts_with && (issuer && issuer === 'Verve') && !bank_code) {
-        const midLength = 18 - starts_with.length
+        const midLength = VERVE_LENGTH - starts_with.length - 1
         return joinCC(starts_with, midLength)
     }
 
     if(contains && !issuer && !bank_code && !starts_with && !ends_with) {
         const firstNumbers = '5' + contains
-        const midLength = 14 - contains.length
+        const midLength = MASTER_VISA_LENGTH - contains.length - 2
         return joinCC(firstNumbers, midLength)
     }
     
-    if(contains && bank_code){
-        if(contains.length > 9) throw new Error("you can't specify more than 9 digits with a bank code")
+    if(contains && bank_code && !issuer && !starts_with && !ends_with){
+        if(contains.length > 9) throw new Error("you can't specify more than 9 digits in addition to a bank code")
+
         if(contains.length === 9){
             const bankBin = String(bank_bins[bank_code].bin)
             const allButLuhn = bankBin + contains
             const lastDigit = calculateLuhn(allButLuhn)
             return allButLuhn + lastDigit
         }
+
         const bankBin = String(bank_bins[bank_code].bin)
         const firstNumbers = bankBin + contains
-        const midLength = 16 - (bankBin.length + contains.length + 1)
+        const midLength = MASTER_VISA_LENGTH - (bankBin.length + contains.length + 1)
         return joinCC(firstNumbers, midLength)
     }
 
-    if(contains && issuer && !bank_code) {
+    if(contains && issuer && !bank_code && !starts_with && !ends_with) {
         const firstNumbers = issuer === 'Visa' ? '4' + contains : '5' + contains
-        const midLength = issuer === 'Verve' ? 19 - (firstNumbers.length + 1) : 16 - (firstNumbers.length + 1)
+        const midLength = issuer === 'Verve' ? VERVE_LENGTH - (firstNumbers.length + 1) : MASTER_VISA_LENGTH - (firstNumbers.length + 1)
         return joinCC(firstNumbers, midLength)
     }
 
     if(ends_with && !issuer && !bank_code && !starts_with && !contains) {
-        
-        const midNumbers = generateRandomNumbers(16 - (ends_with.length + 1))
+        console.log('here')
+        const midNumbers = generateRandomNumbers(MASTER_VISA_LENGTH - (ends_with.length + 1))
         let initialGuess = '5' + midNumbers + ends_with
         return iterateForEndsWith(initialGuess)
     }
 
     if(ends_with && issuer && !bank_code && !starts_with && !contains) {
-        const midLength = issuer === 'Verve' ? 19 - (ends_with.length + 1) : 16 - (ends_with.length + 1)
+        const midLength = issuer === 'Verve' ? VERVE_LENGTH - (ends_with.length + 1) : MASTER_VISA_LENGTH - (ends_with.length + 1)
         const midNumbers = generateRandomNumbers(midLength)
         let initialGuess = issuer === 'Visa' ? '4' + midNumbers + ends_with : '5' + midNumbers + ends_with
         return iterateForEndsWith(initialGuess)
     }
 
     if(ends_with && bank_code && !issuer && !starts_with && !contains) {
-        if(ends_with.length > 9) throw new Error("you can't specify more than 9 digits with a bank code")
+        if(ends_with.length > 9) throw new Error("you can't specify more than 9 digits in addition to a bank code")
 
         const bankBin = String(bank_bins[bank_code].bin)
-        const midLength = 16 - (bankBin.length + ends_with.length)
+        const midLength = MASTER_VISA_LENGTH - (bankBin.length + ends_with.length)
         const midNumbers = generateRandomNumbers(midLength)
         let initialGuess = bankBin + midNumbers + ends_with
         return iterateForEndsWith(initialGuess, true)
     }
 }
 
-const testResult = fullCCNumber({ bank_code: '014' })
+const testResult = fullCCNumber({ ends_with: '85454543', bank_code: '011' })
 console.log(testResult, testResult.length)
 
 module.exports = fullCCNumber
