@@ -1,10 +1,12 @@
 {
   "name": "cc_package",
+  "test command": "./node_modules/.bin/mocha",
   "version": "0.0.1",
   "description": "Generates random test credit card numbers",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u tdd src/tests.js",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,8 @@
   },
   "homepage": "https://github.com/Ay-slim/ccPackage#readme",
   "dependencies": {
-    "joi": "^17.4.0"
+    "chai": "^4.3.4",
+    "joi": "^17.4.0",
+    "mocha": "^8.3.2"
   }
 }

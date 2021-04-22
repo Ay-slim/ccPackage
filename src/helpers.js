@@ -17,14 +17,14 @@ function calculateLuhn(otherNumbers) {
 }
 
 function generateRandomNumbers(size) {
-    return String(Math.floor(Math.random() * (10**size)))
+    return String(Math.floor((Math.random() * (1 - 0.1) + 0.1) * (10**size)))
 }
 
 function iterateForEndsWith(firstGuess, withBank=false) {
     const NUMBER_TO_VARY = withBank ? 6 : 2
     let accurateVariable
     for (let j = 0; j<=9; j++) {
-        let guessValues = firstGuess.slice(0,NUMBER_TO_VARY) + String(j) + firstGuess.slice(NUMBER_TO_VARY, firstGuess.length-1)
+        let guessValues = firstGuess.slice(0,NUMBER_TO_VARY) + String(j) + firstGuess.slice(NUMBER_TO_VARY+1, firstGuess.length-1)
         if (calculateLuhn(guessValues) === firstGuess[firstGuess.length-1]) {
             accurateVariable = String(j)
             break

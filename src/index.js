@@ -88,7 +88,6 @@ function fullCCNumber(options) {
     }
 
     if(ends_with && !issuer && !bank_code && !starts_with && !contains) {
-        console.log('here')
         const midNumbers = generateRandomNumbers(MASTER_VISA_LENGTH - (ends_with.length + 1))
         let initialGuess = '5' + midNumbers + ends_with
         return iterateForEndsWith(initialGuess)
@@ -112,7 +111,8 @@ function fullCCNumber(options) {
     }
 }
 
-const testResult = fullCCNumber({ ends_with: '85454543', issuer: 'Visa' })
-console.log(testResult, testResult.length)
+//const testResult = fullCCNumber({ ends_with: '4533023' })
+// console.log(testResult, testResult.length)
+// console.log('testluhgn: ', calculateLuhn('5915169957283023'))
 
 module.exports = fullCCNumber
