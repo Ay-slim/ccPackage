@@ -42,6 +42,7 @@ National Bank of Kenya, Ltd.
 `cardGen({bank_code: '12'})` _#returns a valid 16 digit card number from National bank of Kenya starting with the bin 477949(e.g. 4779493922028372)_
 
 - This json lists the currently supported banks and their corresponding codes:
+
 """
 {
  ACCESS BANK PLC: '044',
@@ -95,6 +96,7 @@ National Bank of Kenya, Ltd.
  WEMA BANK PLC: '035',
  ZENITH BANK: '057'
  }
+ 
 """
 
 ## starts_with
