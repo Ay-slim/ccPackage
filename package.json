@@ -1,5 +1,5 @@
 {
-  "name": "cc_package",
+  "name": "card-number-generator",
   "test command": "./node_modules/.bin/mocha",
   "version": "0.0.1",
   "description": "Generates random test credit card numbers",
