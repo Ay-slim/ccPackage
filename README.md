@@ -43,7 +43,8 @@ National Bank of Kenya, Ltd.
 
 - This json lists the currently supported banks and their corresponding codes:
 
-"""
+```
+
 {
  ACCESS BANK PLC: '044',
  AFRIBANK NIGERIA PLC: '014',
@@ -96,8 +97,8 @@ National Bank of Kenya, Ltd.
  WEMA BANK PLC: '035',
  ZENITH BANK: '057'
  }
- 
-"""
+
+```
 
 ## starts_with
 Specify up to ten digits that the generated card number must begin with (passing more than ten digits will throw an error)
