@@ -133,7 +133,7 @@ Specify up to ten digits that the generated card number must end with (passing m
 
 `const cardGen = require('card-number-generator')`
 
-`cardGen({ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 4672134(e.g. 5646721348378532)_
+`cardGen({ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 5646721348392134)_
 
 ## combinations
 You can combine more than one condition e.g.
@@ -144,6 +144,7 @@ Generate a card number from a specific bank that contains up to 9 digits (passin
 - examples: 
 
 A card number from Access bank that ends with 92134
+
 `const cardGen = require('card-number-generator')`
 
 `cardGen({bank_code: '044, ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 4036601348392134)_
@@ -156,11 +157,13 @@ A card number from Access bank that contains 92134
 ## issuer and ends_with (or contains)
 Generate a card number from a given issuer containing or ending with up to 9 digits (passing more than 9 digits to contains or ends_with for this combination will throw an error)
 
+- examples:
+
 A Verve card number that ends with 92134:
 
 `const cardGen = require('card-number-generator')`
 
-`cardGen({issuer: 'Verve', ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 5036639401348392134)_
+`cardGen({issuer: 'Verve', ends_with: '92134'})` _#returns a valid 19 digit card number ending with the bin 92134(e.g. 5036639401348392134)_
 
 A Visa card number that ends with 92134:
 
@@ -175,4 +178,4 @@ A MasterCard number that contains 92134:
 `cardGen({issuer: 'Visa', ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 5131921340366092)_
 
 ## bank_code and issuer
-Not supported yet, will come up in a future version
+Not supported yet, will come up soon in a future version
