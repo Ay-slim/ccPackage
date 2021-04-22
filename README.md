@@ -7,6 +7,7 @@ card-number-generator lets you generate valid credit or debit card numbers that 
 # Usage
 The package accepts input as a javascript object specifying the details of the card number you wish to generate. For example, below is the code for generating a Master Card number:
 `const cardGen = require('card-number-generator')`
+
 `cardGen({issuer: 'MasterCard'})` _#returns a valid 16 digit mastercard number starting with 5(e.g. 5939403084030308)_
 
 ## Important notes
@@ -21,9 +22,11 @@ This is the card type for which you wish to generate a card number. Currently, o
 - Examples:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({issuer: 'Visa'})` _#returns a valid 16 digit Visa card number starting with 4(e.g. 4939403084030308)_
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({issuer: 'Verve'})` _#returns a valid 19 digit mastercard number starting with 5(e.g. 5939403084030308291)_
 
 ## bank_code
@@ -33,16 +36,19 @@ Here you can specify which bank you want the card generated from with pre-determ
 The line below generates a card number from Access bank, Nigeria
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({bank_code: '044'})` _#returns a valid 16 digit card number from Access bank starting with the bin 403660(e.g. 4036603922028372)_
 
 Eco bank Nigeria
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({bank_code: '050'})` _#returns a valid 16 digit card number from Eco bank starting with the bin 558773(e.g. 5587733922028372)_
 
 National Bank of Kenya, Ltd.
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({bank_code: '12'})` _#returns a valid 16 digit card number from National bank of Kenya starting with the bin 477949(e.g. 4779493922028372)_
 
 - This json lists the currently supported banks and their corresponding codes:
@@ -109,6 +115,7 @@ Specify up to ten digits that the generated card number must begin with (passing
 - example:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({starts_with: '4672134563'})` _#returns a valid 16 digit card number starting with the bin 4672134563(e.g. 4672134563028372)_
 
 ## contains
@@ -116,6 +123,7 @@ Specify up to ten digits that the generated card number must contain (passing mo
 - example:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({contains: '4672134'})` _#returns a valid 16 digit card number containing the bin 4672134(e.g. 5646721348378532)_
 
 ## ends_with
@@ -123,6 +131,7 @@ Specify up to ten digits that the generated card number must end with (passing m
 - example:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 4672134(e.g. 5646721348378532)_
 
 ## combinations
@@ -135,10 +144,12 @@ Generate a card number from a specific bank that contains up to 9 digits (passin
 
 A card number from Access bank that ends with 92134
 `const cardGen = require('card-number-generator')`
+
 `cardGen({bank_code: '044, ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 4036601348392134)_
 
 A card number from Access bank that contains 92134
 `const cardGen = require('card-number-generator')`
+
 `cardGen({bank_code: '044, contains: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 4036609213413483)_
 
 ## issuer and ends_with (or contains)
@@ -147,16 +158,19 @@ Generate a card number from a given issuer containing or ending with up to 9 dig
 A Verve card number that ends with 92134:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({issuer: 'Verve', ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 5036639401348392134)_
 
 A Visa card number that ends with 92134:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({issuer: 'Visa', ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 4036609213192134)_
 
 A MasterCard number that contains 92134:
 
 `const cardGen = require('card-number-generator')`
+
 `cardGen({issuer: 'Visa', ends_with: '92134'})` _#returns a valid 16 digit card number ending with the bin 92134(e.g. 5131921340366092)_
 
 ## bank_code and issuer
