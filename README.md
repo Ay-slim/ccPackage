@@ -6,6 +6,7 @@ card-number-generator lets you generate valid credit or debit card numbers that 
 
 # Usage
 The package accepts input as a javascript object specifying the details of the card number you wish to generate. For example, below is the code for generating a Master Card number:
+
 `const cardGen = require('card-number-generator')`
 
 `cardGen({issuer: 'MasterCard'})` _#returns a valid 16 digit mastercard number starting with 5(e.g. 5939403084030308)_
