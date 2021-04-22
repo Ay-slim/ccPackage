@@ -1,5 +1,5 @@
 # card-number-generator
-credit-card-generator lets you generate valid credit or debit card numbers that pass the Luhn algorithm test. You can specify features of the credit card number including the issuer(MasterCard, Visa, Verve), bank, or not more than 10 digits which the credit card number must contain, start with, or end with. 
+card-number-generator lets you generate valid credit or debit card numbers that pass the Luhn algorithm test. You can specify features of the credit card number including the issuer(MasterCard, Visa, Verve), bank, or not more than 10 digits which the credit card number must contain, start with, or end with. 
 
 # Installation
 `npm install card-number-generator`
